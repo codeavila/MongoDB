@@ -310,7 +310,7 @@ Como habiamos visto en el inicio este metodo nos sirve para contar, para mostrar
 
     db.hostpital.find( "fechaIngreso.año" : 2018 ).count()
 
-# ¿Comom acceder a los datos que estan dentro de un `registro` ( Arrays )?
+# ¿Como acceder a los datos que estan dentro de un `registro` ( Arrays )?
 
 Como te pudiste dar cuenta en la sentencia anterior consultamos la cantidad de personas que fueron ingresadas durante el año 2018, pero ese dato no se encuentra en el "primer nivel" de nuestro formato JSON que contiene los datos del pasciente, entonces ¿ como accedimos a el ?.
 
@@ -332,7 +332,9 @@ Como te pudiste dar cuenta en la sentencia anterior consultamos la cantidad de p
 
     }
 
-#### *A estas alturas te habras dado cuenta que MongoDB trabaja con la estructura de datos JSON la cual la podemos entender de la siguiente manera:*
+#### *A estas alturas te habras dado cuenta que MongoDB trabaja con la estructura de datos JSON y aunque no lo creas tambien estas utilizando JavaScript, de hecho es dicen los que saben que es mejor aprender JavaScript y despues MongoDB, yo diria y ¿por que no ambos?.*
+
+#### Regresando al tema analicemos los "`niveles`" que tenemos en nuestra estructura de pasciente
 
 
 
