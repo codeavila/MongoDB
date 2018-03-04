@@ -223,11 +223,11 @@ Este comando hace lo que dice, eliminar el documento que especifiquemos.
 
 ## Ejemplo de problema para poder entender algunos operadores.
 
->Supongamos que tenemos una base de datos de un Hospital y que en este Hospital tiene la necesidad de saber que pascientes son aptos para ser operados ya que es necesario revisar los examenes de sus analisis para pasarlos a Cirugia o regresarlos hasta que cumplan los requisitos
+>Supongamos que tenemos una base de datos de un Hospital y que en este Hospital tiene la necesidad de saber que pacientes son aptos para ser operados ya que es necesario revisar los examenes de sus analisis para pasarlos a Cirugia o regresarlos hasta que cumplan los requisitos
 
 *"Se que es raro pero creeme que entenderas mejor los operadores así".*
 
-### Manejaremos la siguiente estructura JSON para un pasciente
+### Manejaremos la siguiente estructura JSON para un paciente
     
     { 
         _id: ObjectId("51e6681a2b7e6dab80c1ebd6") ,
@@ -297,7 +297,7 @@ $where| Casa con los documentos que satisfagan una expresión en JavaScript.
 >Hemos utilizado el comando `.pretty()` al final de las consultas para que nos muestra una forma mas legible los `registros` ahora que pasaria si quisieramos order los datos dentro de la `Coleccion` para este tipo de casos se utiliza el comando **`.sort()`**
 
 
-##### -> *Siguiendo con el ejemplo del Hospital se nos ordena que organizemos alfabeticamente a todos los pascientes*
+##### -> *Siguiendo con el ejemplo del Hospital se nos ordena que organizemos alfabeticamente a todos los pacientes*
 
     db.hospital.find().sort( { nombrePaciente : 1 } )
     
@@ -306,15 +306,15 @@ $where| Casa con los documentos que satisfagan una expresión en JavaScript.
 # Usos de **.count()**
 Como habiamos visto en el inicio este metodo nos sirve para contar, para mostrar su utilidad utilizaremos el ejemplo del Hospital
 
-##### -> *Supongamos que queremos saber cuantos pasciente ingresaron durante el año 2018*
+##### -> *Supongamos que queremos saber cuantos paciente ingresaron durante el año 2018*
 
     db.hostpital.find( "fechaIngreso.año" : 2018 ).count()
 
-# ¿Como acceder a los datos que estan dentro de un `registro` ( Arrays )?
+# ¿Como acceder a los datos que estan dentro de un `registro`? 
 
-Como te pudiste dar cuenta en la sentencia anterior consultamos la cantidad de personas que fueron ingresadas durante el año 2018, pero ese dato no se encuentra en el "primer nivel" de nuestro formato JSON que contiene los datos del pasciente, entonces ¿ como accedimos a el ?.
+Como te pudiste dar cuenta en la sentencia anterior consultamos la cantidad de personas que fueron ingresadas durante el año 2018, pero ese dato no se encuentra en el "primer nivel" de nuestro formato JSON que contiene los datos del paciente, entonces ¿ como accedimos a el ?.
 
-### Estructura JSON de Pasciente
+### Estructura JSON de paciente
     { 
         _id: ObjectId("51e6681a2b7e6dab80c1ebd6") ,
          nombrePaciente : "Jose Jose" , 
@@ -332,11 +332,55 @@ Como te pudiste dar cuenta en la sentencia anterior consultamos la cantidad de p
 
     }
 
-#### *A estas alturas te habras dado cuenta que MongoDB trabaja con la estructura de datos JSON y aunque no lo creas tambien estas utilizando JavaScript, de hecho es dicen los que saben que es mejor aprender JavaScript y despues MongoDB, yo diria y ¿por que no ambos?.*
+> *A estas alturas te habras dado cuenta que MongoDB trabaja con la estructura de datos JSON y aunque no lo creas tambien estas utilizando JavaScript, de hecho es dicen los que saben que es mejor aprender JavaScript y despues MongoDB, yo diria y ¿por que no ambos?.*
 
-#### Regresando al tema analicemos los "`niveles`" que tenemos en nuestra estructura de pasciente
+#### Regresando al tema analicemos los "`niveles`" que tenemos en nuestra estructura de paciente
 
+    fechaIngreso : [
+                           { dia : "Lunes" } ,
+                           { mes : "Abril" },
+                           { año : 2018 }
+                        ] 
+>Observemos que una de las propiedades de nuestro Paciente fue la fecha de ingreso al hospial y en esta se tiene otras propiedades dentro para hacer mas especifico en como se maneja la fecha de ingreso.
 
+### Accedamos a los valores de fechaIngreso
+
+##### -> *Supongamos que queremos saber el dia en el que el paciente ingreso, lo cual lo hariamos de la siguiente manera*
+
+    db.hostpital.find( {"_id" : ObjectId("5a9bc2f7ae61711fa665c462")} , {"fechaIngreso.dia" : true } ).pretty()
+
+>Como puedes observar solo te muestra el `dia` en el cual fue ingresado el pasciente, recuerda que para solo mostrar un dato agregaremos la `propiedad` que queremos obtener con un estado `true` ( Esto ya se vio con anterioridad ).
+
+>Ó ahora bien, si quieres ver todos los pacientes que entraron el dia Lunes seria así.
+
+    db.hostpital.find({ "fechaIngreso.dia" : "Lunes" }).pretty()
+
+>Excelente ahora podemos ser mas especificas nuestras busquedas.
+
+## Arrays
+
+Array imaginalo como un contener que puede tener en su interior `n` datos, los cuales estan organizados por algo llamado `indice`.
+
+    alergias : ["penicilina","diclofenaco","polen"]
+
+>En el caso de la seccion de alergias observemos que no tiene mas propiedades si no, se puede entender como un `array` llamado `alergias` las cuales contiene **3 Espacios** utilizados. 
+>
+>En un `array` se inicia el conteo desde **`0`** (Cero), esto quiere decir que el **`Indice`** para acesar a alguno de los elementos del `array` seria algo como [0] = penicilina , [1] = diclofenaco, [2] = polen.
+
+### Accedamos a los valores de alergias
+
+##### -> *Supongamos que queremos saber las alergias del paciente, para un caso asi, esta seria la solucion*
+
+    db.hostpital.find( {"_id" : ObjectId("5a9bb274ae61711fa665c45f")} , {"alergias" : true } ).
+
+### Los Arrays y sus operadores
+
+Operadores  | Funcion
+------------- | -------------
+$elemMatch  | asd 
+$slice  | asd
+$.  | asd 
+$size | asd
 
 
 
