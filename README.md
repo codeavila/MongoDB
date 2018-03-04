@@ -1,4 +1,4 @@
-#Tabla de orientacion para entrar al mundo de MongoDB
+# Tabla de orientacion para entrar al mundo de MongoDB
 SQL o Relacional  | MongoDB
 ------------- | -------------
 Base de Datos  | Base de Datos
@@ -8,19 +8,19 @@ Join  | Lookup
 Foreign Key  | Reference / Referencia
  Multi-table transaction  | Single Document Transaction
  
-#Comandos para la terminal
+# Comandos para la terminal
 
 	$:mongod (Inicializa MongoDB)
 	$:mongo (abre el Shell para trabajar con MongoDB)
 
 
-##Comandos de MongoDB
+## Comandos de MongoDB
 
 Crear una Colecion ( Una BD )
 	
 	$: mongo NombreDeLaBaseDeDatos
 	
-###Ejemplo
+### Ejemplo
 	
 	$: mongo ejemplo 
 
@@ -40,34 +40,56 @@ Para seleccionar la Base de Datos con la que deseamos trabajar
 	
 	$: use ejemplo	
 
-#Comandos
-######Este comando te muestra las Carpetas que contiene la coleccion que 		seleccionamos. (Muestra los primeros 20 resultados que encuentre)
-	$: db.NombreDeLaColeccion.find()
+# Comandos
+###### Este comando te muestra las Carpetas que contiene la coleccion que 		seleccionamos. (Muestra los primeros 20 resultados que encuentre)
+	db.NombreDeLaColeccion.find()
 
-###Ejemplo	
-	$: db.ejemplo.find()
+### Ejemplo	
+	db.ejemplo.find()
 	
-#####Ese resultado se puede guardar en una variebla para luego consultar por medio de una posicion que queramos obtener ( Imagina un Array con los datos y un Indice para utilizarlo para el contenido de la posicion )
-	$: var nombreDeLaVariable = db.NombreDeLaColeccion.find()
-###Ejemplo
-	$: var	array = db.ejemplo.find()
+##### Ese resultado se puede guardar en una variebla para luego consultar por medio de una posicion que queramos obtener ( Imagina un Array con los datos y un Indice para utilizarlo para el contenido de la posicion )
+	 var nombreDeLaVariable = db.NombreDeLaColeccion.find()
+### Ejemplo
+	 var array = db.ejemplo.find()
 	
 	-Para imprimir el Indice al cual queremos acceder utilizando la variable anterior haras lo siguiente
 	
-	$: printjson ( array [ 4 ] )
+	 printjson ( array [ 4 ] )
 	
-	-Donde 'array' es la variable que utilizamos para guardar el resultado de la consulta y el numero dentro de los corchetes es el Indice al cual queremos acceder.
+>Donde **`array`** es la variable que utilizamos para guardar el resultado de la consulta y el numero dentro de los corchetes es el Indice al cual queremos acceder.
 	 
 
-######Este comando imprime el contenido de una Carpeta en formato JSON
+###### Este comando imprime el contenido de una Carpeta en formato JSON
 	$: db.NombreDeLaColeccion.pretty()
 
-###Ejemplo	
+### Ejemplo	
 	$: db.ejemplo.find()
 
 
-#Insert
+# Insert
 
 Para insertar datos en MongoDB se utiliza una estructura de tipo JSON como podras ver a continuacion:
 
 #### Estructura
+
+
+
+    var variable = { "nombre" : "Eric", "apellido" : "Avila", "edad" : "27"  }
+    
+> Nota : Una manera que en lo personal me gusto es la de declarar una variable que contenga la `consulta`(por decirlo de alguna manera) y despues agregarla al `metodo` al cual usaremos.
+
+#### Una vez guardada, la ingresamos en el `"metodo"`. 
+
+> Recuerda que estamos utilizando la Base de Datos llamada : **`ejemplo`**
+ 
+    db.ejemplo.insert( variable );
+
+#### En caso de que no exista el ´Documento´se creara automaticamente.
+
+#### Ejecutamos el metodo
+    db.ejemplo.find()
+>> Y obtendremos el `"Registro"` antes insertado.
+
+
+
+
