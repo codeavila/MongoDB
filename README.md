@@ -389,20 +389,5 @@ $size | asd
 
 >Nos muestra todo el `documento` del Paciente y en la parte donde se encuentran las alergias solo nos muestra la primera. **`Ten en cuenta que dependiendo del numero que pongamos es la cantidad de elementos que nos mostrara, empezadon de Izquierda a Derececha o en si lo vemos de manera mas Tecnica del INDICE [0] en adelante`** 
 
-##### -> *Y ¿si solo queremos saber los pacientes que hayan sido ingresados el dia Lunes?*
+# En construccion :D
 
-
-db.hostpital.find( { fechaIngreso : { $elemMatch: { dia : "Lunes" } } } ).pretty()
-
-##### -> *¿Si solo queremos saber los pacientes que hayan sido ingresados el dia Lunes y en el año 2018?*
-
-    db.hostpital.find( { fechaIngreso : 
-                            { $elemMatch: 
-                                { $and [ : {
-                                    dia : "Lunes"
-                                } ,
-                                { año : 2018 } ]
-                            }
-                        } 
-                   } 
-    ).pretty()
