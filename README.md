@@ -261,43 +261,33 @@ Este comando hace lo que dice, eliminar el documento que especifiquemos.
 ### Caso 3 - El uso de **`$or`** y **`$lt`**
 >**( Ó )** este operar se utiliza en caso de que puede suceder una cosa ú otra y **( Lesser than  )** Evalua si un campo es **menor** al valor que hayas escrito
 
-##### -> *Supongamos que quisieramos saber los pacientes que menores de 50 años ó que hayan tenido cirugias anteriores *
+##### -> *Supongamos que quisieramos saber los pacientes que son menores de 50 años ó que hayan tenido cirugias anteriores *
 
     db.hospital.find( { $or: [ { edad: { $lt: 50 } }, { cirugiasAnteriores: "Si" } ] } )
 
 
-#### Lista de los operadores que hay
+#### Operadores Basicos
 
-* List
-* Uno
-* as
-* sd
-* fd
-* asd
-* as
-* as
-* as
-* as
-* as
-* as
-* as
+Operadores  | Funcion
+------------- | -------------
+$eq  | (Equal) 
+$gt  | (Greater than) 
+$gte | (Greater than or equal) 
+$lt | (Lesser than or equal) 
+$lte | (Lesser than or equal) 
+$ne | (Not equal) 
+$or | (O)
+$and | (Y)
+<!--
+$exists | {exists: true} evalúa si existe(no es nulo).
+$in | Evalúa si el valor se encuentra dentro del array.
+$nin | (Not in) Evalúa si el valor no se encuentra dentro del array.
+$all | Evalúa si todos los valores se encuentran dentro del array.
+$mod | (Modulo) Aplica la operación de módulo y lo compara con el valor pasado.
+$regex | Selecciona los documentos que casan con el valor de la expresión regular.
+$$text | Realiza una busqueda de texto.
+$where| Casa con los documentos que satisfagan una expresión en JavaScript.
+-->
 
-
-*$eq (Equal) Evalúa si un campo es igual al valor que se le pasa.
-
-*¢gt (Greater than) Evalúa si un campo es mayor que el valor pasado.
-• $gte -> (Greater than or equal) Evalúa si un campo es mayor o igual que el valor pasado. • $lt -> (Lesser than or equal) Evalúa si un campo es menor que el valor pasado.
-• $lte -> (Lesser than or equal) Evalúa si un campo es menor o igual que el valor pasado.
-• $ne -> (Not equal) Evalúa si un campo no es igual al valor.
-• $or -> (O)
-• $and -> (Y)
-• $exists -> {exists: true} evalúa si existe(no es nulo).
-• $in -> Evalúa si el valor se encuentra dentro del array.
-• $nin -> (Not in) Evalúa si el valor no se encuentra dentro del array.
-• $all -> Evalúa si todos los valores se encuentran dentro del array.
-• $mod -> (Modulo) Aplica la operación de módulo y lo compara con el valor pasado.
-• $regex -> Selecciona los documentos que casan con el valor de la expresión regular.
-• $text -> Realiza una busqueda de texto.
-• $where -> Casa con los documentos que satisfagan una expresión en JavaScript.
 
 
