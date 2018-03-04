@@ -371,7 +371,7 @@ Array imaginalo como un contener que puede tener en su interior `n` datos, los c
 
 ##### -> *Supongamos que queremos saber las alergias del paciente, para un caso asi, esta seria la solucion*
 
-    db.hostpital.find( {"_id" : ObjectId("5a9bb274ae61711fa665c45f")} , {"alergias" : true } ).
+    db.hostpital.find( {"_id" : ObjectId("5a9bb274ae61711fa665c45f")} , { alergias : true } ).
 
 ### Los Arrays y sus operadores
 
@@ -383,4 +383,26 @@ $.  | asd
 $size | asd
 
 
+##### -> *Pero, y si solo queremos saber la primera alergia del paciente*
 
+    db.hostpital.find( {"_id" : ObjectId("5a9bb274ae61711fa665c45f")} , { alergias : { $slice : 1 } } )
+
+>Nos muestra todo el `documento` del Paciente y en la parte donde se encuentran las alergias solo nos muestra la primera. **`Ten en cuenta que dependiendo del numero que pongamos es la cantidad de elementos que nos mostrara, empezadon de Izquierda a Derececha o en si lo vemos de manera mas Tecnica del INDICE [0] en adelante`** 
+
+##### -> *Y ¿si solo queremos saber los pacientes que hayan sido ingresados el dia Lunes?*
+
+
+db.hostpital.find( { fechaIngreso : { $elemMatch: { dia : "Lunes" } } } ).pretty()
+
+##### -> *¿Si solo queremos saber los pacientes que hayan sido ingresados el dia Lunes y en el año 2018?*
+
+    db.hostpital.find( { fechaIngreso : 
+                            { $elemMatch: 
+                                { $and [ : {
+                                    dia : "Lunes"
+                                } ,
+                                { año : 2018 } ]
+                            }
+                        } 
+                   } 
+    ).pretty()
