@@ -35,6 +35,10 @@ Para mostrar todas las Base de Datos
 Para seleccionar la Base de Datos con la que deseamos trabajar
 
 	 use NombreDeLaBaseDeDatos
+	 
+Para saber la cantidad de documentos que contiene la coleccion
+
+    db.NombreDeLaBaseDeDatos.count()
 	
 ### Ejemplo
 	
@@ -273,7 +277,7 @@ Operadores  | Funcion
 $eq  | (Equal) 
 $gt  | (Greater than) 
 $gte | (Greater than or equal) 
-$lt | (Lesser than or equal) 
+$lt | (Lesser than) 
 $lte | (Lesser than or equal) 
 $ne | (Not equal) 
 $or | (O)
@@ -288,6 +292,49 @@ $regex | Selecciona los documentos que casan con el valor de la expresión regu
 $$text | Realiza una busqueda de texto.
 $where| Casa con los documentos que satisfagan una expresión en JavaScript.
 -->
+
+# Ordernar `Documentos` en la `Coleccion`
+>Hemos utilizado el comando `.pretty()` al final de las consultas para que nos muestra una forma mas legible los `registros` ahora que pasaria si quisieramos order los datos dentro de la `Coleccion` para este tipo de casos se utiliza el comando **`.sort()`**
+
+
+##### -> *Siguiendo con el ejemplo del Hospital se nos ordena que organizemos alfabeticamente a todos los pascientes*
+
+    db.hospital.find().sort( { nombrePaciente : 1 } )
+    
+>>El valor de **1** significa que ordenara de manera ascendente y caso contrario se utilizara **-1**
+
+# Usos de **.count()**
+Como habiamos visto en el inicio este metodo nos sirve para contar, para mostrar su utilidad utilizaremos el ejemplo del Hospital
+
+##### -> *Supongamos que queremos saber cuantos pasciente ingresaron durante el año 2018*
+
+    db.hostpital.find( "fechaIngreso.año" : 2018 ).count()
+
+# ¿Comom acceder a los datos que estan dentro de un `registro` ( Arrays )?
+
+Como te pudiste dar cuenta en la sentencia anterior consultamos la cantidad de personas que fueron ingresadas durante el año 2018, pero ese dato no se encuentra en el "primer nivel" de nuestro formato JSON que contiene los datos del pasciente, entonces ¿ como accedimos a el ?.
+
+### Estructura JSON de Pasciente
+    { 
+        _id: ObjectId("51e6681a2b7e6dab80c1ebd6") ,
+         nombrePaciente : "Jose Jose" , 
+         edadPaciente : 50 ,
+         fechaIngreso : [
+                           { dia : "Lunes" } ,
+                           { mes : "Abril" },
+                           { año : 2018 }
+                        ] ,
+        alergias : ["penicilina","diclofenaco","polen"] ,
+        aptoCirugia : "No" ,
+        triguiceridos : 200 ,
+        azucar : 150 ,
+        cirugiasAnteriores : "Si"
+
+    }
+
+#### *A estas alturas te habras dado cuenta que MongoDB trabaja con la estructura de datos JSON la cual la podemos entender de la siguiente manera:*
+
+
 
 
 
