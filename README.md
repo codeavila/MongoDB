@@ -120,9 +120,9 @@ var variable = { "nombre" : "Eric", "apellido" : "Avila", "edad" : "27"  } ,  **
 
 Estos metodos son utilizados para buscar `documentos` en la base de datos, claro ambas son para casos especificamos como te muestro a continuacion.
 
-##Find
+## Find
 
-###Estructura
+### Estructura
 
 ###### Este comando te muestra los `documentos` que contiene la coleccion que seleccionamos. (Muestra los primeros 20 resultados que encuentre por default)
 
@@ -156,9 +156,9 @@ Para imprimir el Indice al cual queremos acceder utilizando la variable anterior
 	
 **Esto nos ayudara a leer los resultados de una mejor manera el contenido de un documento o dentro de una base de datos.**
 
-##FindOne 
+## FindOne 
 
-####Estructura
+#### Estructura
 
     db.ejemplo.findOne()
 
@@ -185,13 +185,13 @@ En caso de que querramos buscar varios documentos que tengan **una coincidencia*
 >>>De esta manera nos retornara todas las personas que tengan el nombre de **`Eric`** y el campo **`apellido`**
 ya que es el unico que tiene el estado **`true`**.
 
-#Remove
+# Remove
 
 Este comando hace lo que dice, eliminar el documento que especifiquemos.
 
 >**Recuerda tener cuidado ya que si no especificas el `documento` en la consulta, eliminaras todo.**
 
-###Ejemplo
+### Ejemplo
 
     db.products.remove( { "_id": "ObjectId("50691737d386d8fadbd6b01d")" } )
 
