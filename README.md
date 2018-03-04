@@ -391,3 +391,18 @@ $size | asd
 
 # En construccion :D
 
+<!--
+
+https://github.com/ga-wdi-boston/mongodb-crud
+
+http://charlascylon.com/2013-06-10-tutorial-mongodb-introduccion-a-nosql-y-las-bases
+
+https://www.genbetadev.com/bases-de-datos/mongodb-empezando-por-el-principio-insertando-datos
+
+https://www.youtube.com/watch?v=c8n6JsQuX2A
+
+https://www.youtube.com/watch?v=Apbk83XL8L8&t=636s
+
+https://www.youtube.com/watch?v=56Xx2wDh4VI&t=1597s
+
+-->
