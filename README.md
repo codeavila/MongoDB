@@ -62,7 +62,17 @@ Para insertar datos en MongoDB se utiliza una estructura de tipo JSON como podra
 
 #### Ejecutamos el metodo
     db.ejemplo.find()
->> Y obtendremos el `"Registro"` antes insertado.
+>> Y obtendremos los `"Registros"` antes insertados.
+
+## Insert multiple
+    
+    db.ejemplo.insert( [
+        { nombre : "Alina", apellido : "Avila", edad : 2 } ,
+        { nombre : "Mariana", apellido : "Villanueva", edad : 27 } ,
+        { nombre : "Ramses", apellido : "Barrios", edad : 14 }
+    ] )
+>La caracteristica de agregar multiples objetos JSON o registros es agregar **´[ ]´** (Corchetes) para indicar que es un **Array** de datos.
+
 
 # Update
 
@@ -73,14 +83,15 @@ Para actualizar datos en MongoDB hay que tener ciertas consideraciones que se mu
 >db.ejemplo.update( 
 >   **`{ "nombre" : "Eric" }`** , { "apellido" : "Avila", "edad" : "50"  }  )
 
->> ### Siempre ten en cuenta que al momento de hacer la consulta de esta forma, tienes que poner todos sus campos, ya que si no lo haces se _actualizara_ con las propiedas que solo hayas puesto en la sentencia.
->>> Para evitar existe lo siguiente 
+>> ### Siempre ten en cuenta que al momento de hacer la consulta de esta forma, tienes que poner todos sus campos, ya que si no lo haces se _actualizara_ con las propiedades que solo hayas puesto en la sentencia.
+>>> Para evitar eso existe lo siguiente 
 
 #### Estructura
 
-db.ejemplo.update( { "nombre" : "Eric" }, { **`$set :   { "TipoDeSanGre" : "A+" }`**  }, { **_upsert : true_** }  )
+db.ejemplo.update( { "nombre" : "Eric" }, { **`$set :   { "TipoDeSanGre" : "A+" }`**  } , { **_upsert : true_** }  )
+>La funcion **`$set`** sirve para agregar una propiedad mas a nuestra `carpeta` o `registro`
 
->>> Tranquilo enseguida sabras porque se agrega **`upsert`** enseguida.
+>>> Tranquilo enseguida sabras porque se agrega **`upsert`**.
 
 
 Hay una `"configuracion"`dentro de la estructura del **`Update`** que nos da la siguientes prestaciones.
@@ -103,7 +114,15 @@ var variable = { "nombre" : "Eric", "apellido" : "Avila", "edad" : "27"  } ,  **
 ### Si desearamos eliminar un `campo` de nuestro `documento` se haria de la siguiente forma
 
 >db.products.update( { _id: ObjectId("51e6681a2b7e6dab80c1ebd6") }, { **`$unset:{ "edad" : "1" }`** } )
+>>¿Por que se pone 1?, sucede que el 1 funje como `true` siendo esta funcion un `boleano`
 
+
+### Incrementar un valor **`$inc`**
+>Supongamos que por alguna razon tenemos nos equivocamos en una cantidad y ocupamos que sea mas de lo que pusimos en la propiedad, para este tipo de casos se utiliza lo siguiente:
+
+>db.products.update( { _id: ObjectId("51e6681a2b7e6dab80c1ebd6") } , { **`$inc:{ "edad" : 10 }`** } )
+>
+>>Que es lo que sucede, toma el valor actual de la propiedad `edad`y le aumenta la cantidad de 10 al valor actual.
 
 ## Save 
 
@@ -193,12 +212,92 @@ Este comando hace lo que dice, eliminar el documento que especifiquemos.
 
 ### Ejemplo
 
-    db.products.remove( { "_id": "ObjectId("50691737d386d8fadbd6b01d")" } )
+    db.ejemplo.remove( { "_id": "ObjectId("50691737d386d8fadbd6b01d")" } )
 
 # Operadodes 
 >(Actualizare a medida que entienda un poco mas y sea lo suficiente claro para explicarlo)
 
-    
+## Ejemplo de problema para poder entender algunos operadores.
 
+>Supongamos que tenemos una base de datos de un Hospital y que en este Hospital tiene la necesidad de saber que pascientes son aptos para ser operados ya que es necesario revisar los examenes de sus analisis para pasarlos a Cirugia o regresarlos hasta que cumplan los requisitos
+
+*"Se que es raro pero creeme que entenderas mejor los operadores así".*
+
+### Manejaremos la siguiente estructura JSON para un pasciente
+    
+    { 
+        _id: ObjectId("51e6681a2b7e6dab80c1ebd6") ,
+         nombrePaciente : "Jose Jose" , 
+         edadPaciente : 50 ,
+         fechaIngreso : [
+                           { dia : "Lunes" } ,
+                           { mes : "Abril" },
+                           { año : 2018 }
+                        ] ,
+        alergias : ["penicilina","diclofenaco","polen"] ,
+        aptoCirugia : "No" ,
+        triguiceridos : 200 ,
+        azucar : 150 ,
+        cirugiasAnteriores : "Si"
+
+    }
+    
+>Recuerda que es un ejemplo y que tenemos una Base de datos llamada **Hospital**.
+
+### Caso 1 - El uso de **`$eq`**
+>**( Equal )** Evalua si un campo es **igual** al valor que hayas escrito.
+
+##### -> *Supongamos que quisieramos saber los pacientes que tengan una edad especifica*
+
+    db.hospital.find( { edadPaciente : { $eq : 18 } } )
+    
+### Caso 2 - El uso de **`$gt`** y **`$lte`**
+>**( Greater than )** Evalua si un campo es **mayor** al valor que hayas escrito y **( Lesser than or equal )** Evalua si un campo es **menor o igual** al valor que hayas escrito
+
+##### -> *Supongamos que quisieramos saber los pacientes que son mayores de edad (18 años) hasta los 30 años*
+
+    db.hospital.find( { edadPaciente : { $eq : 18 , $lte : 30 } } )
+
+### Caso 3 - El uso de **`$or`** y **`$lt`**
+>**( Ó )** este operar se utiliza en caso de que puede suceder una cosa ú otra y **( Lesser than  )** Evalua si un campo es **menor** al valor que hayas escrito
+
+##### -> *Supongamos que quisieramos saber los pacientes que menores de 50 años ó que hayan tenido cirugias anteriores *
+
+    db.hospital.find( { $or: [ { edad: { $lt: 50 } }, { cirugiasAnteriores: "Si" } ] } )
+
+
+#### Lista de los operadores que hay
+
+* List
+* Uno
+* as
+* sd
+* fd
+* asd
+* as
+* as
+* as
+* as
+* as
+* as
+* as
+
+
+*$eq (Equal) Evalúa si un campo es igual al valor que se le pasa.
+
+*¢gt (Greater than) Evalúa si un campo es mayor que el valor pasado.
+• $gte -> (Greater than or equal) Evalúa si un campo es mayor o igual que el valor pasado. • $lt -> (Lesser than or equal) Evalúa si un campo es menor que el valor pasado.
+• $lte -> (Lesser than or equal) Evalúa si un campo es menor o igual que el valor pasado.
+• $ne -> (Not equal) Evalúa si un campo no es igual al valor.
+• $or -> (O)
+• $and -> (Y)
+• $exists -> {exists: true} evalúa si existe(no es nulo).
+• $in -> Evalúa si el valor se encuentra dentro del array.
+• $nin -> (Not in) Evalúa si el valor no se encuentra dentro del array.
+• $all -> Evalúa si todos los valores se encuentran dentro del array.
+• $mod -> (Modulo) Aplica la operación de módulo y lo compara con el valor pasado.
+• $regex -> Selecciona los documentos que casan con el valor de la expresión regular.
+• $text -> Realiza una busqueda de texto.
+• $where -> Casa con los documentos que satisfagan una expresión en JavaScript.
 
 
