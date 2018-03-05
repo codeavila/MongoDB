@@ -406,3 +406,53 @@ https://www.youtube.com/watch?v=Apbk83XL8L8&t=636s
 https://www.youtube.com/watch?v=56Xx2wDh4VI&t=1597s
 
 -->
+
+# Tema PHP y MongoDB
+
+[Link del Controlador de MongoDB](http://php.net/manual/es/set.mongodb.php)
+
+En mi caso como utilizo Mac Os X
+
+Primero tengo que ver la version de mi PHP para poder instalar el Controlador de Mongo
+    
+    php -v
+    -> PHP 7.1.13 etc...
+    
+Entonces eligo el comando para instalar que es
+    
+    brew install php71-mongodb
+
+Para ver si es correcta la instalacion
+
+>En el FINDER buscar la siguiente direccion
+
+    /usr/local/opt/
+
+Y buscar , en mi caso `php71-mongodb` ya que yo instale esa version. 
+
+Si tienes duda por tu SO revisa esta direccion [Link](http://php.net/manual/es/mongodb.installation.php)
+
+# Estara desordenado en lo que trato de estructurarlo de una manera mas optima.
+
+Iniciemos creando un documento del tipo php para lograr empezar con la comunicacion con Mongo.
+
+    <?php
+    require 'vendor/autoload.php';
+
+    $uri = "mongodb://Usuario:Contraseña@AQUI_INGRESA_LA_URL_DONDE_ESTE_MONGO/_AQUI_PON_EL_NOMBRE_DE_LA_BD_QUE_UTILIZAREMOS";
+
+    $mongo = new MongoDB\Client($uri);
+
+    try 
+    {
+	echo "Estoy Conectado";
+    }
+    catch (MongoDB\Driver\Exception\ConnectionTimeoutException $e)
+    {
+    echo "Error : ".$e;
+    }
+    ?>
+    
+>Este codigo nos permite saber si tenemos comunicacion con Mongo en caso contrario gracias al TRY te devolvera el error. 
+
+Siempre debes de poner el `require 'vendor/autoload.php';`
