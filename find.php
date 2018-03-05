@@ -10,6 +10,7 @@ $collection = (new MongoDB\Client($uri))->db_euab->Heroes;
 
 $document = $collection->findOne(['grupo' => 'X-Men']);
 
+var_dump($document['_id']);
 var_dump($document['nombre']);
 var_dump($document['mute']);
 var_dump($document['grupo']);
