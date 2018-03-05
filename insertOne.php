@@ -13,12 +13,11 @@ try
 
 $collection = $mongoCliente->$db->$coleccionNombre;
 
-$doc = array( [ 'nombre' => 'Bruno', 'mute' => 'BatMan' , 'edad' => 35 ] );
+$doc = array(  'nombre' => 'Bruno Diaz', 'mute' => 'BatMan' , 'edad' => 35 ,'grupo' => 'Liga de la Justicia' );
 
 $queryExecuted = $collection->insertOne( $doc );
 
     echo "Inserted with Object ID '{$queryExecuted->getInsertedId() }'";
-
 }
 catch (MongoDB\Driver\Exception\ConnectionTimeoutException $e)
 {
