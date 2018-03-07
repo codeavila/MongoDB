@@ -2,22 +2,10 @@
   include 'Php/mostrarTodo.php';
 ?>
 
-<h1>Lista de Super Heroes Registrados</h1>
-
 <div class="container">
+<h1>Lista de Super Heroes Registrados <a href="Php/registro.php"><button class="btn">Registro Nuevo</button></a></h1>
 <div class="row">
-
 	
-	<form class="col s12">
-         <div class="input-field">
-          <input id="search" type="search" required>
-          <label class="label-icon" for="search"></label>
-          <i class="material-icons">close</i>
-          <div class="btn" type="sumbit">Buscar</div>
-        </div>
-    </form>
-
-
 </div>
 	<table>
         <thead>
@@ -61,16 +49,21 @@ foreach (mostrarTodo() as $doc) {
             	?>
             </td>
             <td>
-              <form action="CRUD/update.php">
-            	 <input type="hidden" name="id" id="id" value=
-                <?php  
-                  echo $doc['_id'];
-                ?> >
-                <input class="btn" type="submit" name="submit" value="Actualizar" />
+              <form action="Php/Vista_UPDATE.php" method="post">
+                <input type="hidden" name="_id" id="_id" value= <?php echo $doc['_id'];?> >
+                <input type="hidden" name="nombre" id="nombre" value= <?php echo  $doc['nombre'];?> >
+                <input type="hidden" name="mute" id="mute" value= <?php echo $doc['mute'];?> >
+                <input type="hidden" name="edad" id="edad" value= <?php echo $doc['edad'];?> >
+                <input type="hidden" name="grupo" id="grupo" value= <?php echo $doc['grupo'];?> >
+                <input class="btn" type="submit" name="submit" value="Actualizar">
               </form>
             </td>
             <td>
-            	<a href="#"><button class="btn">Eliminar</button></a>
+          <form action="Php/CRUD/delete.php" method="post">
+                <input type="hidden" name="_id" id="_id" value= <?php echo $doc['_id'];?> >
+                <input class="btn" type="submit" name="submit" value="Eliminar">
+              </form>
+
             </td>
           </tr>
 
