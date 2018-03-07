@@ -456,3 +456,5 @@ Iniciemos creando un documento del tipo php para lograr empezar con la comunicac
 >Este codigo nos permite saber si tenemos comunicacion con Mongo en caso contrario gracias al TRY te devolvera el error. 
 
 Siempre debes de poner el `require 'vendor/autoload.php';`
+
+# php -S 127.0.0.1:8000
