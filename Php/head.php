@@ -10,7 +10,7 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">MongoDB/PHP</a>
       <ul class="right">
-        <li><a href="#"><button class="btn">Registro Nuevo</button></a></li>
+        <li><a href="Php/registro.php"><button class="btn">Registro Nuevo</button></a></li>
       </ul>
     </div>
   </nav>
