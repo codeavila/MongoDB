@@ -1,5 +1,10 @@
-<?php include 'Php/head.php'; 
-  include 'Php/mostrarTodo.php';
+<?php 
+  include 'Php/head.php'; 
+  include 'Php/findAll.php';
+
+  $obj = new  findAll();
+  $collection = $obj->find_All();
+
 ?>
 
 <div class="container">
@@ -21,7 +26,7 @@
 
         <tbody>
 <?php 
-foreach (mostrarTodo() as $doc) {	
+foreach ($collection as $doc) {	
 ?>	
           <tr>
           	<td>
