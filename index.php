@@ -4,6 +4,7 @@
 
 <div class="container">
 <h1>Lista de Super Heroes Registrados <a href="Php/registro.php"><button class="btn">Registro Nuevo</button></a></h1>
+
 <div class="row">
 	
 </div>
