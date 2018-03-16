@@ -40,11 +40,7 @@ foreach ($collection as $doc) {
             </td>
             <td>
               	<form action="views/updateView.php" method="post">
-	                <input type="hidden" name="_id" id="_id" value= <?php echo $doc['_id'];?> >
-	                <!-- <input type="hidden" name="nombre" id="nombre" value= <?php echo  $doc['nombre'];?> >
-	                <input type="hidden" name="mute" id="mute" value= <?php echo $doc['mute'];?> >
-	                <input type="hidden" name="edad" id="edad" value= <?php echo $doc['edad'];?> >
-	                <input type="hidden" name="grupo" id="grupo" value= <?php echo $doc['grupo'];?> > -->
+	                <input type="" name="_id" id="_id" value= <?php echo $doc['_id'];?> >
 	                <input class="btn" type="submit" name="submit" value="Actualizar">
 	             </form>
             </td>

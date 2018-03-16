@@ -4,7 +4,11 @@ require dirname(dirname(__FILE__))."/modules/_MongoConector.php";
 /**
 * 
 */
+
+
 class findAll{
+
+	
 	
 	function __construct()
 	{
@@ -13,8 +17,8 @@ class findAll{
 
 	function find_All()
 	{
-		$obj = new  _MongoDB();
-		$collection = $obj->C_DB();
+		 $obj = new  _MongoDB();
+		 $collection = $obj->C_DB();
 		try {
 			$resultArray = $collection->find([]); 
 			} catch (MongoDB\Driver\Exception\ConnectionTimeoutException $e) {
@@ -25,10 +29,12 @@ class findAll{
 
 	function find_One($idSH)
 	{
-		$obj = new  _MongoDB();
-		$collection = $obj->C_DB();
+		 $obj = new  _MongoDB();
+		 $collection = $obj->C_DB();
 		try {
-			$resultArray = $collection->findOne(['_id' => new \MongoDB\BSON\ObjectID($idSH)]); 
+			
+			$resultArray = $collection->find(['_id' => new \MongoDB\BSON\ObjectID($idSH)]); 
+			 
 			} catch (MongoDB\Driver\Exception\ConnectionTimeoutException $e) {
 				error_log ($e);
 		}
