@@ -45,7 +45,7 @@ foreach ($collection as $doc) {
 	             </form>
             </td>
             <td>
-		          <form action="#" method="post">
+		          <form action="modules/_delete.php" method="post">
 		                <input type="hidden" name="_id" id="_id" value= <?php echo $doc['_id'];?> >
 		                <input class="btn" type="submit" name="submit" value="Eliminar">
 		          </form>
