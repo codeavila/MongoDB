@@ -1,23 +1,16 @@
 <?php  
-require '_MongoConector.php';
-
+require dirname(dirname(__FILE__))."/modules/_MongoConector.php";
 /**
 * 
 */
-class updateClass
-{
-	$idSH = $_POST["_id"];
-	$nombreSH = $_POST["nombre"];
-	$muteSH = $_POST["mute"];
-	$edadSH = $_POST["edad"];
-	$grupoSH = $_POST["grupo"];
-	
-	function __construct()
-	{
-		# code...
-	}
 
-	function updateMethod(){
+if (isset($_POST['submit'])) {
+	
+		$idSH = $_POST["_id"];
+		$nombreSH = $_POST["nombre"];
+		$muteSH = $_POST["mute"];
+		$edadSH = $_POST["edad"];
+		$grupoSH = $_POST["grupo"];
 
 		$obj = new  _MongoDB();
 		$collection = $obj->C_DB();
@@ -31,5 +24,5 @@ class updateClass
 		} catch (MongoDB\Driver\Exception\ConnectionTimeoutException $e) {
 			error_log ($e);
 		}
-	}
+
 }
