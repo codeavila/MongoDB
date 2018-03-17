@@ -5,7 +5,7 @@ require dirname(dirname(__FILE__))."/modules/_find.php";
 ?>
 
 <div class="container">
-	<h1>Lista de Super Heroes Registrados <a href="Php/registro.php"><button class="btn">Registro Nuevo</button></a></h1>
+	<h1>Lista de Super Heroes Registrados <a href="views/registro.php"><button class="btn">Registro Nuevo</button></a></h1>
 <div class="row">
 	<table>
         <thead>
@@ -40,7 +40,7 @@ foreach ($collection as $doc) {
             </td>
             <td>
               	<form action="views/updateView.php" method="post">
-	                <input type="" name="_id" id="_id" value= <?php echo $doc['_id'];?> >
+	                <input type="hidden" name="_id" id="_id" value= <?php echo $doc['_id'];?> >
 	                <input class="btn" type="submit" name="submit" value="Actualizar">
 	             </form>
             </td>
