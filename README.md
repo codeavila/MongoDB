@@ -14,7 +14,7 @@ Foreign Key  | Reference / Referencia
 	$:mongo (abre el Shell para trabajar con MongoDB)
 
 
-## Comandos de MongoDB
+## Comandos de MonoDB
 
 Crear una Colecion ( Una BD )
 	
